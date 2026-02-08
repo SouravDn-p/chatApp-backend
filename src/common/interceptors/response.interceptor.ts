@@ -20,7 +20,10 @@ export interface FormattedResponse<T> {
 }
 
 @Injectable()
-export class ResponseInterceptor<T> implements NestInterceptor<T, FormattedResponse<T>> {
+export class ResponseInterceptor<T> implements NestInterceptor<
+  T,
+  FormattedResponse<T>
+> {
   intercept(
     context: ExecutionContext,
     next: CallHandler,
@@ -28,7 +31,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, FormattedRespo
     const httpCtx = context.switchToHttp();
     const response = httpCtx.getResponse<Response>();
     const request = httpCtx.getRequest<Request>();
-    
+
     return next.handle().pipe(
       map((data: T) => ({
         statusCode: response.statusCode,

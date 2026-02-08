@@ -30,7 +30,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     if (exception instanceof HttpException) {
       status = exception.getStatus();
       const res = exception.getResponse();
-      
+
       if (typeof res === 'string') {
         message = res;
       } else {

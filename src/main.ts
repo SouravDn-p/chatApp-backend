@@ -15,6 +15,7 @@ async function bootstrap(): Promise<void> {
     credentials: true,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   app.use(cookieParser());
 
   app.useGlobalPipes(
@@ -33,7 +34,7 @@ async function bootstrap(): Promise<void> {
 
   // Get port from ConfigService (type-safe)
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('app.port') || 5001;
+  const port = configService.get<number>('app.port') || 5000;
 
   await app.listen(port);
 }
