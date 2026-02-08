@@ -1,14 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { UsersService } from './users.service';
-import { User } from './schemas/user.schema';
+import { AuthService } from './auth.service';
+import { UsersService } from '../users/users.service';
+import { User } from '../users/schemas/user.schema';
 
-describe('UsersService', () => {
-  let service: UsersService;
+describe('AuthService', () => {
+  let service: AuthService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
+        AuthService,
         UsersService,
         {
           provide: getModelToken(User.name),
@@ -17,7 +19,7 @@ describe('UsersService', () => {
       ],
     }).compile();
 
-    service = module.get<UsersService>(UsersService);
+    service = module.get<AuthService>(AuthService);
   });
 
   it('should be defined', () => {
